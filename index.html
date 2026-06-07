@@ -1,41 +1,284 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>あなたのＨＰタイトル</title>
-<meta name="description" content="ページの説明">
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="プログラマー志望の学生ポートフォリオサイトです。スキル、制作物、学習姿勢をまとめています。">
+  <title>Portfolio | Programmer</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div id="outer">
-<header>
-<div id="header-inner">
-<h1>あなたのＨＰタイトル</h1>
-<p class="description">あなたのＨＰの説明文</p>
-</div>
-</header>
-<div id="content">
-<div class="inner"><h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</div>
-</div>
-<aside>
-<div id="side-inner">
-<div class="side-title">サイドバータイトル</div>
-<div class="side">
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</div>
-</div>
-</aside>
-<footer>© 2010 あなたのホームページ</footer>
-</div></body>
+  <header class="site-header">
+    <nav class="nav" aria-label="メインナビゲーション">
+      <a class="logo" href="#top">Portfolio</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#works">Works</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Programmer Portfolio</p>
+        <h1>課題を見つけ、コードで解決するプログラマーを目指しています。</h1>
+        <p class="hero-description">
+          Web制作とプログラミングを中心に学習しています。使いやすさ、読みやすいコード、
+          改善を続ける姿勢を大切にしながら制作に取り組んでいます。
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#works">制作物を見る</a>
+          <a class="button secondary" href="#contact">連絡先へ</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="プロフィール概要">
+        <span class="card-label">Profile</span>
+        <h2>氏名を入力</h2>
+        <p>プログラマー志望 / Web開発学習中</p>
+        <ul>
+          <li>C++ / Modern C++</li>
+          <li>SIMD・ECS・メモリ管理を学習</li>
+          <li>設計と性能改善に興味があります</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">About</p>
+        <h2>自己紹介</h2>
+      </div>
+      <div class="about-grid">
+        <p>
+          プログラミングを通して、身近な不便を解決できるものづくりに魅力を感じています。
+          現在はWebサイト制作を中心に、フロントエンドの基礎、Gitによるバージョン管理、
+          読みやすいコードの書き方を学んでいます。
+        </p>
+        <p>
+          分からないことを調べ、試し、改善するプロセスを大切にしています。
+          就職後は、利用者にとって分かりやすく、保守しやすいシステム開発に貢献したいです。
+        </p>
+        <p>
+          自分で使うための小さなツールやライブラリを作ることが好きです。
+          よく使う処理を再利用しやすく整理し、他のコードから扱いやすい形にすることに興味があります。
+        </p>
+        <p>
+          C/C++では、カーネルスタイルのように責務が分かりやすく、読み返しやすい書き方が好きです。
+          コメントはDoxygen形式を意識し、<code>.h</code> は実装を詰め込むよりも、
+          利用側から見たインターフェースとして読める構成を大切にしています。
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Skills</p>
+        <h2>スキル</h2>
+      </div>
+      <div class="skill-list">
+        <article class="skill-card">
+          <h3>C++ / Modern C++</h3>
+          <p>C++20 module、テンプレート、純粋仮想関数、型を意識したインターフェース設計に取り組んでいます。</p>
+        </article>
+        <article class="skill-card">
+          <h3>Low-level / Performance</h3>
+          <p>AVX/FMAを使ったSIMD処理、PMRを使ったメモリ管理、実測値によるベンチマーク比較を学んでいます。</p>
+        </article>
+        <article class="skill-card">
+          <h3>Architecture / Design</h3>
+          <p>Archetype ECS、ビット列による型構成管理、Doxygenコメント、ヘッダーをインターフェースとして扱う書き方を意識しています。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="works" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Works</p>
+        <h2>制作物</h2>
+      </div>
+      <div class="work-list">
+        <article class="work-card">
+          <div class="work-number">01</div>
+          <h3>SIMD Header-only Library</h3>
+          <p>
+            C++でAVX/FMAを扱いやすくするためのヘッダーオンリーライブラリです。
+            式を一度コンパイルして実行する仕組みや、Vec3の物理計算向けプランを実装しています。
+          </p>
+          <ul class="tags">
+            <li>C++</li>
+            <li>AVX</li>
+            <li>FMA</li>
+            <li>Header-only</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-number">02</div>
+          <h3>Archetype ECS Module Library</h3>
+          <p>
+            3年生で制作した、C++20 module形式のArchetype ECSです。
+            Entity、Component、Archetypeを分け、指定したコンポーネントを持つEntityへ
+            ラムダ式で処理を行える仕組みを作りました。
+          </p>
+          <p>
+            コンポーネント構成は <code>std::bitset</code> のシグネチャで管理し、
+            型の組み合わせをビット列として見られるようにすることで、Archetypeの一致判定を理解しやすくしました。
+          </p>
+          <figure class="work-media">
+            <img src="images/ecs.png" alt="Archetype ECSのコードスクリーンショット">
+            <figcaption>Archetype ECSの公開APIとDoxygenコメント</figcaption>
+          </figure>
+          <ul class="tags">
+            <li>C++</li>
+            <li>C++20 Module</li>
+            <li>ECS</li>
+            <li>Archetype</li>
+            <li>Bitset</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-number">03</div>
+          <h3>C++20 Memory Module Library</h3>
+          <p>
+            2年生で制作した、C++20 module形式のメモリ管理ライブラリです。
+            <code>import memory;</code> で使える公開インターフェースを意識して、
+            オブジェクト生成、解放、使用バイト数の取得をまとめました。
+          </p>
+          <p>
+            <code>std::pmr::memory_resource</code> と組み合わせ、事前に確保したメモリ領域を使うことで、
+            生成コストを抑える設計に挑戦しています。コメントはDoxygen形式で整理しました。
+          </p>
+          <figure class="work-media">
+            <img src="images/memory.png" alt="C++20 Memory Module Libraryのコードスクリーンショット">
+            <figcaption>C++20 moduleとして公開するメモリ管理インターフェース</figcaption>
+          </figure>
+          <ul class="tags">
+            <li>C++20</li>
+            <li>Module</li>
+            <li>PMR</li>
+            <li>Doxygen</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-number">04</div>
+          <h3>Console Game / Double Buffer Library</h3>
+          <p>
+            1年生のときに制作したC++コンソールゲームです。
+            純粋仮想関数を持つ基底クラスを作り、各処理を共通のインターフェースから呼び出す構成に挑戦しました。
+          </p>
+          <p>
+            <code>Windows.h</code> を利用側で直接扱わない制約の中で、描画のちらつきを抑えるための
+            ダブルバッファ機能を <code>doublebuffer.h</code> としてまとめました。
+            1年生時点の作品のためマジックナンバーが多く残っていますが、現在は定数化や責務分離を意識して改善しています。
+          </p>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <img src="images/dbuffer-game.png" alt="コンソールゲームの実行画面">
+              <figcaption>自作ダブルバッファAPIで描画したゲーム画面</figcaption>
+            </figure>
+            <figure class="work-media">
+              <img src="images/dbuffer-code.png" alt="ダブルバッファAPIを使った描画コード">
+              <figcaption><code>DBuffer::input</code> を使った描画処理</figcaption>
+            </figure>
+          </div>
+          <ul class="tags">
+            <li>C++</li>
+            <li>OOP</li>
+            <li>Pure Virtual</li>
+            <li>Double Buffer</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section benchmark">
+      <div class="section-heading">
+        <p class="eyebrow">Benchmark</p>
+        <h2>SIMDライブラリのベンチマーク比較</h2>
+      </div>
+      <p class="benchmark-lead">
+        手書きSIMD実装と、ライブラリ側で事前に処理計画を作成して実行する方式を比較しました。
+        測定条件は要素数16,777,216、繰り返し100回、Release x64ビルドです。
+      </p>
+      <div class="benchmark-grid">
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>Vec3物理計算</h3>
+            <span>約1.07倍</span>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">手書きSIMD</div>
+            <div class="bar">
+              <span style="width: 100%;"></span>
+            </div>
+            <strong>4651.52ms</strong>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Vec3PhysicsPlan</div>
+            <div class="bar">
+              <span class="fast" style="width: 93.2%;"></span>
+            </div>
+            <strong>4336.62ms</strong>
+          </div>
+          <p>position.xの誤差は0で、結果の一致を確認しています。</p>
+        </article>
+
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>比較で見せるポイント</h3>
+            <span>Accuracy 0</span>
+          </div>
+          <ul class="benchmark-points">
+            <li>手書きSIMDより短い処理時間で実行できるか</li>
+            <li>計算結果が一致しているか</li>
+            <li>Releaseビルド、要素数、繰り返し回数を明記する</li>
+          </ul>
+          <p>速度だけでなく、正確性と測定条件も一緒に示すことで、再現性のある比較になるよう意識しています。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Strength</p>
+        <h2>大切にしていること</h2>
+      </div>
+      <div class="strength">
+        <div>
+          <h3>意図が伝わるコードを書く</h3>
+          <p>Doxygenコメント、名前付け、<code>.h</code> をインターフェースとして読める構成を大切にしています。</p>
+        </div>
+        <div>
+          <h3>新しい知識を取り入れる</h3>
+          <p>C++20 module、ECS、SIMDなど、気になった技術を実際に手を動かして試すことが好きです。現在はJITにも興味があります。</p>
+        </div>
+        <div>
+          <h3>性能やメモリ使用量を意識する</h3>
+          <p>とりあえず動くだけで終わらせず、使用するメモリ量や実行速度にも目を向けて実装することを意識しています。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>連絡先</h2>
+      </div>
+      <p>
+        メールアドレスやGitHubアカウントのURLを入力してください。
+        採用担当者が確認しやすいよう、提出前にリンク先も確認しておくと安心です。
+      </p>
+      <div class="contact-links">
+        <a href="mailto:your-email@example.com">your-email@example.com</a>
+        <a href="https://github.com/rice-kome234">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Your Name. All Rights Reserved.</p>
+  </footer>
+</body>
 </html>
