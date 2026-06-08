@@ -54,8 +54,8 @@
       <div class="about-grid">
         <p>
           プログラミングを通して、身近な不便を解決できるものづくりに魅力を感じています。
-          現在はWebサイト制作を中心に、フロントエンドの基礎、Gitによるバージョン管理、
-          読みやすいコードの書き方を学んでいます。
+          現在はC++を中心に、ライブラリやフレームワークの設計、メモリ管理、
+          読みやすく再利用しやすいコードの書き方を学んでいます。
         </p>
         <p>
           分からないことを調べ、試し、改善するプロセスを大切にしています。
@@ -140,6 +140,38 @@
         </article>
         <article class="work-card">
           <div class="work-number">03</div>
+          <h3>DX11 Rendering Framework</h3>
+          <p>
+            2年生で制作した、Siv3Dのように扱いやすいAPIを目指したDirectX 11ベースの描画フレームワークです。
+            <code>CONTEXT_API</code> からテクスチャ追加やスプライト描画を呼び出せるようにしました。
+          </p>
+          <p>
+            描画ごとに重いDrawCallを発行するのではなく、スプライト情報を一度ためて、
+            最後に <code>DrawInstanced</code> でまとめて描画する設計に挑戦しています。
+          </p>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <img src="images/dx11-api-setup.png" alt="CONTEXT_APIでテクスチャとスプライトを設定する使用例">
+              <figcaption><code>CONTEXT_API</code> からテクスチャ登録とスプライト設定を行う使用例</figcaption>
+            </figure>
+            <figure class="work-media">
+              <img src="images/dx11-api-draw.png" alt="CONTEXT_APIでスプライト描画を追加する使用例">
+              <figcaption>使う側は <code>AddSprite</code> で描画対象を追加するだけにしています</figcaption>
+            </figure>
+            <figure class="work-media">
+              <img src="images/dx11.png" alt="DX11 Rendering Frameworkの内部APIコードスクリーンショット">
+              <figcaption>描画処理をまとめて扱うための内部API層</figcaption>
+            </figure>
+          </div>
+          <ul class="tags">
+            <li>C++</li>
+            <li>DirectX 11</li>
+            <li>Framework</li>
+            <li>DrawInstanced</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-number">04</div>
           <h3>C++20 Memory Module Library</h3>
           <p>
             2年生で制作した、C++20 module形式のメモリ管理ライブラリです。
@@ -162,7 +194,7 @@
           </ul>
         </article>
         <article class="work-card">
-          <div class="work-number">04</div>
+          <div class="work-number">05</div>
           <h3>Console Game / Double Buffer Library</h3>
           <p>
             1年生のときに制作したC++コンソールゲームです。
