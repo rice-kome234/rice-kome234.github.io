@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="プログラマー志望の学生ポートフォリオサイトです。スキル、制作物、学習姿勢をまとめています。">
+  <meta name="description" content="C++によるソフトウェア開発を中心に、SIMD最適化、データ指向設計、メモリ管理、フレームワーク設計に取り組む学生ポートフォリオです。">
   <title>Portfolio | Programmer</title>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css?v=profile-cpp">
 </head>
 <body>
   <header class="site-header">
@@ -24,10 +24,10 @@
     <section class="hero">
       <div class="hero-text">
         <p class="eyebrow">Programmer Portfolio</p>
-        <h1>課題を見つけ、コードで解決するプログラマーを目指しています。</h1>
+        <h1>C++で仕組みを理解し、設計と実装を深めるプログラマーを目指しています。</h1>
         <p class="hero-description">
-          Web制作とプログラミングを中心に学習しています。使いやすさ、読みやすいコード、
-          改善を続ける姿勢を大切にしながら制作に取り組んでいます。
+          C++によるソフトウェア開発を継続して行い、SDF、データ指向設計、メモリ管理、SIMD最適化などを
+          実装と検証を通して学んでいます。拡張性や保守性を意識したフレームワーク設計にも取り組んでいます。
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#works">制作物を見る</a>
@@ -36,12 +36,12 @@
       </div>
       <div class="hero-card" aria-label="プロフィール概要">
         <span class="card-label">Profile</span>
-        <h2>氏名を入力</h2>
-        <p>プログラマー志望 / Web開発学習中</p>
+        <h2>米谷 慎之助</h2>
+        <p>C++ソフトウェア開発 / 低レイヤー・設計学習中</p>
         <ul>
           <li>C++ / Modern C++</li>
-          <li>SIMD・ECS・メモリ管理を学習</li>
-          <li>設計と性能改善に興味があります</li>
+          <li>SIMD・ECS・SDF・メモリ管理を学習</li>
+          <li>拡張性や可読性を意識した設計に興味があります</li>
         </ul>
       </div>
     </section>
@@ -53,17 +53,21 @@
       </div>
       <div class="about-grid">
         <p>
-          プログラミングを通して、身近な不便を解決できるものづくりに魅力を感じています。
-          現在はC++を中心に、ライブラリやフレームワークの設計、メモリ管理、
-          読みやすく再利用しやすいコードの書き方を学んでいます。
+          C++によるソフトウェア開発を継続して行っています。
+          近年はSDF（Signed Distance Field）やデータ指向設計、メモリ管理、SIMD最適化などの技術に関心を持ち、
+          実装と検証を通じて理解を深めています。
         </p>
         <p>
-          分からないことを調べ、試し、改善するプロセスを大切にしています。
-          就職後は、利用者にとって分かりやすく、保守しやすいシステム開発に貢献したいです。
+          将来的なチーム開発を意識し、拡張性や保守性を重視したフレームワークの設計にも取り組んでいます。
+          開発時にはDoxygenを用いたドキュメント作成を行い、コードだけでなく設計意図や利用方法を共有しやすい環境づくりを意識しています。
         </p>
         <p>
-          自分で使うための小さなツールやライブラリを作ることが好きです。
-          よく使う処理を再利用しやすく整理し、他のコードから扱いやすい形にすることに興味があります。
+          新しい技術に触れた際は、単に利用するだけでなく、自ら実装しながら内部の仕組みを理解することを大切にしています。
+          課題に対して試行錯誤を繰り返し、より良い設計や実装方法を探究し続ける姿勢が強みです。
+        </p>
+        <p>
+          自分やチームが使いやすくなる小さなツールやライブラリを作ることが好きです。
+          よく使う処理を再利用しやすい形に整理し、他のコードから扱いやすいインターフェースとして提供できる設計を意識しています。
         </p>
         <p>
           C/C++では、カーネルスタイルのように責務が分かりやすく、読み返しやすい書き方が好きです。
@@ -85,11 +89,11 @@
         </article>
         <article class="skill-card">
           <h3>Low-level / Performance</h3>
-          <p>AVX/FMAを使ったSIMD処理、PMRを使ったメモリ管理、実測値によるベンチマーク比較を学んでいます。</p>
+          <p>AVX/FMAを使ったSIMD処理、SDF、PMRを使ったメモリ管理、実測値による検証に取り組んでいます。</p>
         </article>
         <article class="skill-card">
           <h3>Architecture / Design</h3>
-          <p>Archetype ECS、ビット列による型構成管理、Doxygenコメント、ヘッダーをインターフェースとして扱う書き方を意識しています。</p>
+          <p>Archetype ECS、データ指向設計、Doxygenコメント、拡張性や可読性を意識したフレームワーク設計に取り組んでいます。</p>
         </article>
       </div>
     </section>
@@ -102,18 +106,22 @@
       <div class="work-list">
         <article class="work-card">
           <div class="work-number">01</div>
-          <h3>SIMD Header-only Library</h3>
+          <h3>SIMD Expression API Library</h3>
           <p>
-            C++でAVX/FMAを扱いやすくするためのヘッダーオンリーライブラリです。
-            式を一度コンパイルして実行する仕組みや、Vec3の物理計算向けプランを実装しています。
+            C++でfloat配列の要素ごとの計算をSIMDで扱いやすくするための式APIライブラリです。
+            現在はヘッダーオンリーではなく、公開APIの <code>simd.h</code>、実装の <code>simd.cpp</code>、内部処理の <code>simd_internal.h</code> に分けています。
+          </p>
+          <p>
+            <code>SimdEngine</code> が配列作成、式ノードの管理、コンパイルを担当し、同じ式を繰り返し実行する場合は <code>ScheduledPlan</code> として事前にプラン化できます。
           </p>
           <ul class="tags">
             <li>C++</li>
-            <li>AVX</li>
-            <li>FMA</li>
-            <li>Header-only</li>
+            <li>AVX2</li>
+            <li>SoA</li>
+            <li>Expression API</li>
           </ul>
         </article>
+
         <article class="work-card">
           <div class="work-number">02</div>
           <h3>Archetype ECS Module Library</h3>
@@ -227,47 +235,33 @@
 
     <section class="section benchmark">
       <div class="section-heading">
-        <p class="eyebrow">Benchmark</p>
-        <h2>SIMDライブラリのベンチマーク比較</h2>
+        <p class="eyebrow">Design Story</p>
+        <h2>SIMDライブラリの設計背景</h2>
       </div>
       <p class="benchmark-lead">
-        手書きSIMD実装と、ライブラリ側で事前に処理計画を作成して実行する方式を比較しました。
-        測定条件は要素数16,777,216、繰り返し100回、Release x64ビルドです。
+        DirectXMathを使う中で、数値を毎回変換して関数へ渡す手間や、<code>__m256</code> でVector3を扱うと余ったレーンが無駄になる点が気になったことから開発を始めました。
       </p>
       <div class="benchmark-grid">
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>Vec3物理計算</h3>
-            <span>約1.07倍</span>
+            <h3>SoAへの着想</h3>
+            <span>Data Layout</span>
           </div>
-          <div class="bar-row">
-            <div class="bar-label">手書きSIMD</div>
-            <div class="bar">
-              <span style="width: 100%;"></span>
-            </div>
-            <strong>4651.52ms</strong>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">Vec3PhysicsPlan</div>
-            <div class="bar">
-              <span class="fast" style="width: 93.2%;"></span>
-            </div>
-            <strong>4336.62ms</strong>
-          </div>
-          <p>position.xの誤差は0で、結果の一致を確認しています。</p>
+          <p>
+            メモリを無駄にしない方法を考える中で、学習していたArchetype ECSから着想を得ました。
+            Vector3をそのまま並べるのではなく、x、y、zのように成分ごとの配列として持つSoA構造にすれば、SIMDでもデータを無駄なく扱いやすいと考えました。
+          </p>
         </article>
 
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>比較で見せるポイント</h3>
-            <span>Accuracy 0</span>
+            <h3>Expression Templateからの見直し</h3>
+            <span>Trade-off</span>
           </div>
-          <ul class="benchmark-points">
-            <li>手書きSIMDより短い処理時間で実行できるか</li>
-            <li>計算結果が一致しているか</li>
-            <li>Releaseビルド、要素数、繰り返し回数を明記する</li>
-          </ul>
-          <p>速度だけでなく、正確性と測定条件も一緒に示すことで、再現性のある比較になるよう意識しています。</p>
+          <p>
+            途中ではExpression Templateで式を表現する設計も試しましたが、コンパイル時間の肥大化や管理コストが重くなり、扱いやすいものにはなりませんでした。
+            そこで、式そのものをデータとして持ち、後からコンパイルして実行する現在の構想へ変更しました。
+          </p>
         </article>
       </div>
     </section>
@@ -299,11 +293,10 @@
         <h2>連絡先</h2>
       </div>
       <p>
-        メールアドレスやGitHubアカウントのURLを入力してください。
-        採用担当者が確認しやすいよう、提出前にリンク先も確認しておくと安心です。
+        制作物やコードについてご質問がありましたら、メールまたはGitHubからご連絡ください。
       </p>
       <div class="contact-links">
-        <a href="mailto:your-email@example.com">your-email@example.com</a>
+        <a href="mailto:yonetani.shinnosuke@gmail.com">yonetani.shinnosuke@gmail.com</a>
         <a href="https://github.com/rice-kome234">GitHub</a>
       </div>
     </section>
