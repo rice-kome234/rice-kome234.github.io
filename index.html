@@ -273,55 +273,55 @@
         <h2>SIMDライブラリのベンチマーク比較</h2>
       </div>
       <p class="benchmark-lead">
-        <code>SIMD-library</code> のRelease x64 / AVX2ビルドで、要素数16,777,216、繰り返し100回として3回測定し、各実装の最速値を掲載しています。
-        スカラー実装を基準に、手書きSIMD、通常の式API、コンパイル済みの <code>ScheduledPlan</code> が近い水準で動作するかを比較しています。
+        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回として3回測定し、各実装の最速値を掲載しています。
+        SIMDなしの通常ループを基準に、手書きSIMD、式API、コンパイル済みプランが近い水準で動作するかを比較しています。
       </p>
       <div class="benchmark-grid">
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>Fused Expressions</h3>
-            <span>a * b を共有する式</span>
+            <h3>共有部分式 a * b + ? の比較</h3>
+            <span>式APIと手書きSIMD</span>
           </div>
           <table class="benchmark-table">
             <thead>
               <tr>
                 <th>実装</th>
                 <th>時間</th>
-                <th>Scalar比</th>
+                <th>通常ループ比</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Scalar no SIMD</td>
+                <td>SIMDなしの通常ループ</td>
                 <td>3547.13 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
-                <td>Manual fused SIMD</td>
+                <td>手書きSIMD</td>
                 <td>3110.52 ms</td>
                 <td>1.14x</td>
               </tr>
               <tr>
-                <td>Normal expression<br><span>式API</span></td>
+                <td>式APIを毎回コンパイル</td>
                 <td>3160.66 ms</td>
                 <td>1.12x</td>
               </tr>
               <tr>
-                <td>ScheduledPlan<br><span>事前コンパイル</span></td>
+                <td>コンパイル済みプランの実行</td>
                 <td>3362.95 ms</td>
                 <td>1.05x</td>
               </tr>
             </tbody>
           </table>
           <p class="benchmark-note">
-            Normal expressionとScheduledPlanは測定順やCPU状態で前後するため、どちらも手書きSIMDに近い同水準として見ています。
-            ScheduledPlanは式構築とコンパイルを実行前に分離できる点も重視しています。
+            式APIとコンパイル済みプランは測定順やCPU状態で前後するため、どちらも手書きSIMDに近い同水準として見ています。
+            コンパイル済みプランは式構築とコンパイルを実行前に分離できる点も重視しています。
           </p>
         </article>
 
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>Three-component Update</h3>
+            <h3>3成分の位置・速度更新の比較</h3>
             <span>Vector3更新</span>
           </div>
           <table class="benchmark-table">
@@ -329,22 +329,22 @@
               <tr>
                 <th>実装</th>
                 <th>時間</th>
-                <th>Scalar比</th>
+                <th>通常ループ比</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Scalar no SIMD</td>
+                <td>SIMDなしの通常ループ</td>
                 <td>5747.51 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
-                <td>Manual 3-component SIMD</td>
+                <td>手書きSIMD</td>
                 <td>4822.17 ms</td>
                 <td>1.19x</td>
               </tr>
               <tr>
-                <td>Specialized 3-component</td>
+                <td>専用更新コード</td>
                 <td>4540.94 ms</td>
                 <td>1.27x</td>
               </tr>
