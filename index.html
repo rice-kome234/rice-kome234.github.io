@@ -109,11 +109,11 @@
           <h3>SIMD Expression API Library</h3>
           <p>
             複数のfloat配列に対する要素ごとの計算を、<code>x = a * b + c</code> のような式APIとして書けるC++ライブラリです。
-            公開APIの <code>simd.h</code>、実装の <code>simd.cpp</code>、内部処理の <code>simd_internal.h</code> を分け、利用側から読みやすい構成を意識しています。
+            利用側は公開APIの <code>simd.h</code> とビルド済みの <code>simd.lib</code> を使う想定で、実装は <code>simd.cpp</code> と内部ヘッダーへ分離しています。
           </p>
           <p>
-            <code>rice::simd::Engine</code> が配列作成、式ノードの管理、実行を担当し、同じ式を何度も使う場合は <code>ScheduledPlan</code> として事前にプラン化できます。
-            共通部分式を持つ計算や3成分更新を対象に、手書きSIMDに近い速度を目指して改善を続けています。
+            <code>rice::simd::Array</code> が配列データを持ち、<code>rice::simd::Engine</code> が積まれた式を <code>execute()</code> でまとめて実行します。
+            共通部分式を持つ計算や3成分更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
           </p>
           <ul class="tags">
             <li>C++</li>
@@ -274,20 +274,14 @@
         <h2>SIMDライブラリのベンチマーク比較</h2>
       </div>
       <p class="benchmark-lead">
-        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回として3回測定しました。
-        下の数値はブレをならすために各実装の中央値を掲載しています。
-        SIMDなしの通常ループを基準に、手書きSIMD、式API、コンパイル済みプランが近い水準で動作するかを比較しています。
+        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回で実行した直近の測定例です。
+        SIMDなしの通常ループを基準に、手書きSIMDと式APIがどの程度近い速度で動作するかを比較しています。
       </p>
       <div class="benchmark-grid">
         <article class="benchmark-card">
           <div class="benchmark-head">
-<<<<<<< HEAD
-            <h3>共有部分式 a * b + (c, d, e) の比較</h3>
-            <span>式API / 手書きSIMD / プラン実行</span>
-=======
-            <h3>a * b + c など、共通部分式を持つ3つの式の比較</h3>
+            <h3>共有部分式 a * b + (c,d,e) の比較</h3>
             <span>式APIと手書きSIMD</span>
->>>>>>> 789994178c3214dde3ba7c9563d25a2a72cd3c07
           </div>
           <table class="benchmark-table">
             <thead>
@@ -300,29 +294,23 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>3577.19 ms</td>
+                <td>3405.00 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>3375.30 ms</td>
-                <td>1.06x</td>
-              </tr>
-              <tr>
-                <td>式APIを毎回コンパイル</td>
-                <td>3317.17 ms</td>
+                <td>3161.14 ms</td>
                 <td>1.08x</td>
               </tr>
               <tr>
-                <td>コンパイル済みプランの実行</td>
-                <td>3423.98 ms</td>
-                <td>1.04x</td>
+                <td>式API</td>
+                <td>3167.14 ms</td>
+                <td>1.08x</td>
               </tr>
             </tbody>
           </table>
           <p class="benchmark-note">
-            式APIとコンパイル済みプランは測定順やCPU状態で前後するため、どちらも手書きSIMDに近い同水準として見ています。
-            コンパイル済みプランは、式構築と実行を分離して扱える点も重視しています。
+            この計算では式APIが手書きSIMDにかなり近い速度で動作しており、共有部分式を持つ式をそのまま書ける点を重視しています。
           </p>
         </article>
 
@@ -342,18 +330,18 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>6352.35 ms</td>
+                <td>5397.85 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>5222.30 ms</td>
-                <td>1.22x</td>
+                <td>4289.41 ms</td>
+                <td>1.26x</td>
               </tr>
               <tr>
                 <td>専用更新コード</td>
-                <td>4930.68 ms</td>
-                <td>1.29x</td>
+                <td>4047.69 ms</td>
+                <td>1.33x</td>
               </tr>
             </tbody>
           </table>
