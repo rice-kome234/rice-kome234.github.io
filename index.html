@@ -112,7 +112,7 @@
             公開APIの <code>simd.h</code>、実装の <code>simd.cpp</code>、内部処理の <code>simd_internal.h</code> に分けています。
           </p>
           <p>
-            <code>SimdEngine</code> が配列作成、式ノードの管理、コンパイルを担当し、同じ式を繰り返し実行する場合は <code>ScheduledPlan</code> として事前にプラン化できます。
+            <code>rice::simd::Engine</code> が配列作成、式ノードの管理、コンパイルを担当し、同じ式を繰り返し実行する場合は <code>ScheduledPlan</code> として事前にプラン化できます。
           </p>
           <ul class="tags">
             <li>C++</li>
@@ -262,6 +262,96 @@
           <p>
             途中ではExpression Templateで式を表現する設計も試しましたが、コンパイル時間の肥大化や管理コストが重くなり、扱いやすいものにはなりませんでした。
             そこで、式そのものをデータとして持ち、後からコンパイルして実行する現在の構想へ変更しました。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section benchmark">
+      <div class="section-heading">
+        <p class="eyebrow">Benchmark</p>
+        <h2>SIMDライブラリのベンチマーク比較</h2>
+      </div>
+      <p class="benchmark-lead">
+        <code>SIMD-library</code> のRelease x64 / AVX2ビルドで、要素数16,777,216、繰り返し100回として3回測定し、各実装の最速値を掲載しています。
+        スカラー実装を基準に、手書きSIMD、通常の式API、コンパイル済みの <code>ScheduledPlan</code> が近い水準で動作するかを比較しています。
+      </p>
+      <div class="benchmark-grid">
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>Fused Expressions</h3>
+            <span>a * b を共有する式</span>
+          </div>
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>実装</th>
+                <th>時間</th>
+                <th>Scalar比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Scalar no SIMD</td>
+                <td>3547.13 ms</td>
+                <td>1.00x</td>
+              </tr>
+              <tr>
+                <td>Manual fused SIMD</td>
+                <td>3110.52 ms</td>
+                <td>1.14x</td>
+              </tr>
+              <tr>
+                <td>Normal expression<br><span>式API</span></td>
+                <td>3160.66 ms</td>
+                <td>1.12x</td>
+              </tr>
+              <tr>
+                <td>ScheduledPlan<br><span>事前コンパイル</span></td>
+                <td>3362.95 ms</td>
+                <td>1.05x</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="benchmark-note">
+            Normal expressionとScheduledPlanは測定順やCPU状態で前後するため、どちらも手書きSIMDに近い同水準として見ています。
+            ScheduledPlanは式構築とコンパイルを実行前に分離できる点も重視しています。
+          </p>
+        </article>
+
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>Three-component Update</h3>
+            <span>Vector3更新</span>
+          </div>
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>実装</th>
+                <th>時間</th>
+                <th>Scalar比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Scalar no SIMD</td>
+                <td>5747.51 ms</td>
+                <td>1.00x</td>
+              </tr>
+              <tr>
+                <td>Manual 3-component SIMD</td>
+                <td>4822.17 ms</td>
+                <td>1.19x</td>
+              </tr>
+              <tr>
+                <td>Specialized 3-component</td>
+                <td>4540.94 ms</td>
+                <td>1.27x</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="benchmark-note">
+            SoAで3成分を分けて持つことで、Vector3更新でも手書きSIMDに近い速度を目指しています。
           </p>
         </article>
       </div>

@@ -456,6 +456,43 @@ h3 {
   border-top: 1px solid var(--border);
 }
 
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.benchmark-table th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.benchmark-table td:nth-child(2),
+.benchmark-table td:nth-child(3) {
+  white-space: nowrap;
+}
+
+.benchmark-table td span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.benchmark-note {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .contact {
   margin-bottom: 56px;
   padding: 36px;
