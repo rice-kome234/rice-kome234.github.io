@@ -113,7 +113,7 @@
           </p>
           <p>
             <code>rice::simd::Array</code> が配列データを持ち、<code>rice::simd::Engine</code> が積まれた式を <code>execute()</code> でまとめて実行します。
-            共通部分式を持つ計算や3成分更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
+            共通部分式を持つ計算やVector3更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
           </p>
           <ul class="tags">
             <li>C++</li>
@@ -274,13 +274,13 @@
         <h2>SIMDライブラリのベンチマーク比較</h2>
       </div>
       <p class="benchmark-lead">
-        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回で実行した直近の測定例です。
+        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回で5回測定した平均値です。
         SIMDなしの通常ループを基準に、手書きSIMDと式APIがどの程度近い速度で動作するかを比較しています。
       </p>
       <div class="benchmark-grid">
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>共有部分式 a * b + (c,d,e) の比較</h3>
+            <h3>計算式: x/y/z = a * b + c/d/e の比較</h3>
             <span>式APIと手書きSIMD</span>
           </div>
           <table class="benchmark-table">
@@ -294,18 +294,18 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>3405.00 ms</td>
+                <td>4270.22 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>3161.14 ms</td>
-                <td>1.08x</td>
+                <td>3644.88 ms</td>
+                <td>1.17x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>3167.14 ms</td>
-                <td>1.08x</td>
+                <td>3778.05 ms</td>
+                <td>1.13x</td>
               </tr>
             </tbody>
           </table>
@@ -330,18 +330,18 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>5397.85 ms</td>
+                <td>6510.54 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>4289.41 ms</td>
-                <td>1.26x</td>
+                <td>5490.46 ms</td>
+                <td>1.19x</td>
               </tr>
               <tr>
-                <td>専用更新コード</td>
-                <td>4047.69 ms</td>
-                <td>1.33x</td>
+                <td>式API</td>
+                <td>5638.71 ms</td>
+                <td>1.15x</td>
               </tr>
             </tbody>
           </table>
