@@ -113,7 +113,7 @@
           </p>
           <p>
             <code>rice::simd::Array</code> が配列データを持ち、<code>rice::simd::Engine</code> が積まれた式を <code>execute()</code> でまとめて実行します。
-            共通部分式を持つ計算やVector3更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
+            同じ中間結果を使う計算やVector3更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
           </p>
           <ul class="tags">
             <li>C++</li>
@@ -205,6 +205,34 @@
         </article>
         <article class="work-card">
           <div class="work-number">05</div>
+          <h3>SDF Collision Console Demo</h3>
+          <p>
+            1年生のときに制作した、SDF（Signed Distance Field）を使ったコンソール上の衝突判定デモです。
+            点や線分、四角形に対する距離を計算し、距離の符号によって内側・外側を判定する仕組みに挑戦しました。
+          </p>
+          <p>
+            プレイヤー位置とSDFの値を画面に表示し、四角形の内側に入ったときは色を変えることで、
+            数式で求めた距離が当たり判定に使えることを確認できるようにしています。
+          </p>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <img src="images/sdf-ground-hit.png" alt="SDFの値と地面判定を表示するコンソールデモ画面">
+              <figcaption>SDF値と地面との当たり判定を表示する実行画面</figcaption>
+            </figure>
+            <figure class="work-media">
+              <img src="images/sdf-quad-check.png" alt="SDFの符号で四角形の内外を判定するコンソールデモ画面">
+              <figcaption>SDFの符号に応じて表示色を変え、内外判定を確認しています</figcaption>
+            </figure>
+          </div>
+          <ul class="tags">
+            <li>C++</li>
+            <li>SDF</li>
+            <li>Collision</li>
+            <li>Console</li>
+          </ul>
+        </article>
+        <article class="work-card">
+          <div class="work-number">06</div>
           <h3>Console Game / Double Buffer Library</h3>
           <p>
             1年生のときに制作したC++コンソールゲームです。
