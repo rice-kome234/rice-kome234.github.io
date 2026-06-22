@@ -302,14 +302,14 @@
         <h2>SIMDライブラリのベンチマーク比較</h2>
       </div>
       <p class="benchmark-lead">
-        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数16,777,216、繰り返し100回で5回測定した平均値です。
-        SIMDなしの通常ループを基準に、手書きSIMDと式APIがどの程度近い速度で動作するかを比較しています。
+        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数8,388,608、繰り返し100回で5回測定した平均値です。
+        SIMDなしの通常ループを基準に、手書きSIMD、DirectXMath、式APIの速度を比較しています。
       </p>
       <div class="benchmark-grid">
         <article class="benchmark-card">
           <div class="benchmark-head">
             <h3>同じ乗算結果を使う3つの式の比較</h3>
-            <span>式APIと手書きSIMD</span>
+            <span>式API / DirectXMath</span>
           </div>
           <table class="benchmark-table">
             <thead>
@@ -322,30 +322,35 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>3604.90 ms</td>
+                <td>2297.29 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>3170.54 ms</td>
-                <td>1.14x</td>
+                <td>2031.01 ms</td>
+                <td>1.13x</td>
+              </tr>
+              <tr>
+                <td>DirectXMath</td>
+                <td>1943.82 ms</td>
+                <td>1.18x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>3213.46 ms</td>
-                <td>1.12x</td>
+                <td>2000.88 ms</td>
+                <td>1.15x</td>
               </tr>
             </tbody>
           </table>
           <p class="benchmark-note">
             この計算では <code>a * b</code> の結果を使って、<code>x</code>、<code>y</code>、<code>z</code> に別々の値を加算しています。
-            式APIでも手書きSIMDにかなり近い速度で動作し、複数の計算式を読みやすく書ける点を重視しています。
+            式APIはDirectXMathに近い速度で動作しており、複数の計算式を読みやすく書ける点を重視しています。
           </p>
         </article>
 
         <article class="benchmark-card">
           <div class="benchmark-head">
-            <h3>Vector3での位置・速度更新の比較</h3>
+            <h3>位置と速度の更新処理の比較</h3>
             <span>SoAベースの更新処理</span>
           </div>
           <table class="benchmark-table">
@@ -359,23 +364,115 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>5730.02 ms</td>
+                <td>3228.21 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>4692.32 ms</td>
-                <td>1.22x</td>
+                <td>2757.48 ms</td>
+                <td>1.17x</td>
+              </tr>
+              <tr>
+                <td>DirectXMath</td>
+                <td>2609.65 ms</td>
+                <td>1.24x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>4641.20 ms</td>
-                <td>1.23x</td>
+                <td>2971.38 ms</td>
+                <td>1.09x</td>
               </tr>
             </tbody>
           </table>
           <p class="benchmark-note">
-            SoAでデータをそれぞれ分けて持つことで、Vector3更新でも手書きSIMDに近い速度を目指しています。
+            SoAでデータを成分ごとに分けて持つことで、位置と速度の更新でもDirectXMathや手書きSIMDに近い速度を目指しています。
+          </p>
+        </article>
+
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>遅延実行でまとめる場合の比較</h3>
+            <span>16出力をまとめて実行</span>
+          </div>
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>実装</th>
+                <th>時間</th>
+                <th>通常ループ比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SIMDなしの通常ループ</td>
+                <td>14722.60 ms</td>
+                <td>1.00x</td>
+              </tr>
+              <tr>
+                <td>手書きSIMD</td>
+                <td>14875.10 ms</td>
+                <td>0.99x</td>
+              </tr>
+              <tr>
+                <td>DirectXMath</td>
+                <td>14600.56 ms</td>
+                <td>1.01x</td>
+              </tr>
+              <tr>
+                <td>式API（1つずつ実行）</td>
+                <td>15391.62 ms</td>
+                <td>0.96x</td>
+              </tr>
+              <tr>
+                <td>式API（まとめて実行）</td>
+                <td>10030.58 ms</td>
+                <td>1.47x</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="benchmark-note">
+            複数の出力を遅延実行でまとめることで、<code>execute()</code> の回数を減らし、式APIの設計が活きるケースを確認しています。
+          </p>
+        </article>
+
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>重い式の比較</h3>
+            <span>複合式の計算</span>
+          </div>
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>実装</th>
+                <th>時間</th>
+                <th>通常ループ比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SIMDなしの通常ループ</td>
+                <td>1506.47 ms</td>
+                <td>1.00x</td>
+              </tr>
+              <tr>
+                <td>手書きSIMD</td>
+                <td>1741.42 ms</td>
+                <td>0.87x</td>
+              </tr>
+              <tr>
+                <td>DirectXMath</td>
+                <td>1497.60 ms</td>
+                <td>1.01x</td>
+              </tr>
+              <tr>
+                <td>式API</td>
+                <td>1525.08 ms</td>
+                <td>0.99x</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="benchmark-note">
+            <code>(a * b + c) * (d * e + f) + (a + d) * (b + e)</code> のような複合式でも、式APIが通常ループに近い速度まで改善できていることを確認しています。
           </p>
         </article>
       </div>
