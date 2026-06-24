@@ -343,8 +343,8 @@
             </tbody>
           </table>
           <p class="benchmark-note">
-            この計算では <code>a * b</code> の結果を使って、<code>x</code>、<code>y</code>、<code>z</code> に別々の値を加算しています。
-            式APIはDirectXMathに近い速度で動作しており、複数の計算式を読みやすく書ける点を重視しています。
+            計算内容: <code>x = a * b + c</code>、<code>y = a * b + d</code>、<code>z = a * b + e</code>。
+            式APIで複数の計算式を読みやすく書きながら、DirectXMathに近い速度を目指しています。
           </p>
         </article>
 
@@ -385,7 +385,8 @@
             </tbody>
           </table>
           <p class="benchmark-note">
-            SoAでデータを成分ごとに分けて持つことで、位置と速度の更新でもDirectXMathや手書きSIMDに近い速度を目指しています。
+            計算内容: <code>velocity += acceleration * dt</code>、<code>position += velocity * dt</code>。
+            SoAで成分ごとにデータを持ち、Vector3相当の更新を無駄なく処理できるかを比較しています。
           </p>
         </article>
 
@@ -431,7 +432,8 @@
             </tbody>
           </table>
           <p class="benchmark-note">
-            複数の出力を遅延実行でまとめることで、<code>execute()</code> の回数を減らし、式APIの設計が活きるケースを確認しています。
+            計算内容: <code>out[i] = a * b + addend[i]</code> を16出力分実行。
+            <code>execute()</code> をまとめることで、式APIの遅延実行設計がどれだけ効くかを確認しています。
           </p>
         </article>
 
@@ -472,7 +474,8 @@
             </tbody>
           </table>
           <p class="benchmark-note">
-            <code>(a * b + c) * (d * e + f) + (a + d) * (b + e)</code> のような複合式でも、式APIが通常ループに近い速度で実行できています。
+            計算内容: <code>(a * b + c) * (d * e + f) + (a + d) * (b + e)</code>。
+            乗算と加算が重なる複合式でも、式APIが通常ループに近い速度で実行できるかを見ています。
           </p>
         </article>
       </div>
