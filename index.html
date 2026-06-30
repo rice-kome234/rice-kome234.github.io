@@ -108,12 +108,12 @@
           <div class="work-number">01</div>
           <h3>SIMD Expression API Library</h3>
           <p>
-            複数のfloat配列に対する要素ごとの計算を、<code>x = a * b + c</code> のような式APIとして書けるC++ライブラリです。
-            利用側は公開APIの <code>simd.h</code> とビルド済みの <code>simd.lib</code> を使う想定で、実装は <code>simd.cpp</code> と内部ヘッダーへ分離しています。
+            複数のfloat配列に対する要素ごとの計算を、<code>x = a * b + c</code> のような式として書けるC++ライブラリです。
+            公開APIは <code>simd.h</code> にまとめ、実装は <code>simd.cpp</code> と内部ヘッダーへ分離しています。
           </p>
           <p>
-            <code>rice::simd::Array</code> が配列データを持ち、<code>rice::simd::Engine</code> が積まれた式を <code>execute()</code> でまとめて実行します。
-            同じ中間結果を使う計算やVector3更新を対象に、式として書ける分かりやすさと手書きSIMDに近い速度の両立を目指して改善を続けています。
+            <code>rice::simd::Array</code> が配列データを所有し、代入された式は <code>rice::simd::Engine</code> に遅延登録されます。
+            <code>execute()</code> 時に内部の実行計画へ変換してまとめて評価することで、読みやすい記述とSIMDによる高速化の両立を目指しています。
           </p>
           <ul class="tags">
             <li>C++</li>
