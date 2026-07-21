@@ -302,7 +302,7 @@
         <h2>SIMDライブラリのベンチマーク比較</h2>
       </div>
       <p class="benchmark-lead">
-        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数8,388,608、繰り返し100回で5回測定した平均値です。
+        <code>SIMD-library</code> を13th Gen Intel(R) Core(TM) i7-13650HX環境でRelease x64 / AVX2ビルドし、要素数1,048,576、繰り返し512回で5回測定した平均値です。
         SIMDなしの通常ループを基準に、手書きSIMD、DirectXMath、式APIの速度を比較しています。
       </p>
       <div class="benchmark-grid">
@@ -322,23 +322,23 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>2045.64 ms</td>
+                <td>1639.74 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>1959.14 ms</td>
-                <td>1.04x</td>
+                <td>1361.97 ms</td>
+                <td>1.20x</td>
               </tr>
               <tr>
                 <td>DirectXMath</td>
-                <td>1744.17 ms</td>
-                <td>1.17x</td>
+                <td>1368.45 ms</td>
+                <td>1.20x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>1822.39 ms</td>
-                <td>1.12x</td>
+                <td>1324.59 ms</td>
+                <td>1.24x</td>
               </tr>
             </tbody>
           </table>
@@ -364,23 +364,23 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>3212.35 ms</td>
+                <td>2730.91 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>2650.02 ms</td>
-                <td>1.21x</td>
+                <td>2059.97 ms</td>
+                <td>1.33x</td>
               </tr>
               <tr>
                 <td>DirectXMath</td>
-                <td>2459.97 ms</td>
-                <td>1.31x</td>
+                <td>1979.05 ms</td>
+                <td>1.38x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>2871.13 ms</td>
-                <td>1.12x</td>
+                <td>2075.40 ms</td>
+                <td>1.32x</td>
               </tr>
             </tbody>
           </table>
@@ -406,28 +406,28 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>13542.40 ms</td>
+                <td>9461.91 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>12400.22 ms</td>
-                <td>1.09x</td>
+                <td>9099.17 ms</td>
+                <td>1.04x</td>
               </tr>
               <tr>
                 <td>DirectXMath</td>
-                <td>11121.50 ms</td>
-                <td>1.22x</td>
+                <td>7968.35 ms</td>
+                <td>1.19x</td>
               </tr>
               <tr>
                 <td>式API（1つずつ実行）</td>
-                <td>11922.64 ms</td>
-                <td>1.14x</td>
+                <td>8022.61 ms</td>
+                <td>1.18x</td>
               </tr>
               <tr>
                 <td>式API（まとめて実行）</td>
-                <td>8226.26 ms</td>
-                <td>1.65x</td>
+                <td>6847.50 ms</td>
+                <td>1.38x</td>
               </tr>
             </tbody>
           </table>
@@ -453,29 +453,29 @@
             <tbody>
               <tr>
                 <td>SIMDなしの通常ループ</td>
-                <td>1215.22 ms</td>
+                <td>848.97 ms</td>
                 <td>1.00x</td>
               </tr>
               <tr>
                 <td>手書きSIMD</td>
-                <td>1373.98 ms</td>
+                <td>965.42 ms</td>
                 <td>0.88x</td>
               </tr>
               <tr>
                 <td>DirectXMath</td>
-                <td>1185.36 ms</td>
-                <td>1.03x</td>
+                <td>852.63 ms</td>
+                <td>1.00x</td>
               </tr>
               <tr>
                 <td>式API</td>
-                <td>1202.18 ms</td>
-                <td>1.01x</td>
+                <td>876.58 ms</td>
+                <td>0.97x</td>
               </tr>
             </tbody>
           </table>
           <p class="benchmark-note">
             計算内容: <code>(a * b + c) * (d * e + f) + (a + d) * (b + e)</code>。
-            乗算と加算が重なる複合式でも、式APIが通常ループに近い速度で実行できるかを見ています。
+            乗算と加算が重なる複合式で、各実装の計算コストがどのように変化するかを比較しています。
           </p>
         </article>
       </div>
