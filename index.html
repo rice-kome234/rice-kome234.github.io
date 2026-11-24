@@ -3,50 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="C++で、SIMD最適化、データ指向設計、メモリ管理、フレームワーク設計に取り組んでいる所が見れるポートフォリオです。">
-  <title>Portfolio | Programmer</title>
-  <link rel="stylesheet" href="index.css?v=profile-cpp">
+  <meta name="theme-color" content="#101210">
+  <meta name="description" content="米谷 慎之助のポートフォリオ。ゲーム・リアルタイム処理向けの自作言語Okm-langの設計と、OOPtimizer、SIMDライブラリなどのC++制作物を紹介します。">
+  <title>米谷 慎之助 | C++ ポートフォリオ</title>
+  <link rel="stylesheet" href="index.css?v=profile-intro">
 </head>
-<body>
+<!-- Redesign informed by unslop by Damir Sokolovsky: https://github.com/heydamir/unslop -->
+<body id="top">
+  <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header">
     <nav class="nav" aria-label="メインナビゲーション">
-      <a class="logo" href="#top">Portfolio</a>
+      <a class="logo" href="#top">米谷 慎之助</a>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#works">Works</a>
-        <a href="#contact">Contact</a>
+        <a href="#about">自己紹介</a>
+        <a href="#skills">スキル</a>
+        <a href="#works">制作物</a>
+        <a href="#contact">連絡先</a>
       </div>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
+  <main id="main">
+    <section class="hero" aria-labelledby="portfolio-name">
       <div class="hero-text">
-        <p class="eyebrow">Portfolio</p>
-        <h1>C++でSIMDライブラリ、ECS、メモリ管理ライブラリを実装しています。</h1>
+        <p class="eyebrow">C++ ポートフォリオ</p>
+        <h1 id="portfolio-name">米谷 慎之助</h1>
         <p class="hero-description">
-          C++による開発を継続して行い、SDF、データ指向設計、メモリ管理、SIMD最適化などを
-          実装と検証を通して学んでいます。拡張性や可読性を意識したフレームワーク設計にも取り組んでいます。
+          SIMDによる配列演算、オブジェクトの配置、メモリ管理。使う側のコードと、CPUでの実行の両方を考えてC++ライブラリを作っています。
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#works">制作物を見る</a>
-          <a class="button secondary" href="#contact">連絡先へ</a>
         </div>
-      </div>
-      <div class="hero-card" aria-label="プロフィール概要">
-        <span class="card-label">Profile</span>
-        <h2>米谷 慎之助</h2>
-        <p>C++ソフトウェア開発 / 低レイヤー・設計学習中</p>
-        <ul>
-          <li>C++ / Modern C++</li>
-          <li>SIMD・ECS・SDF・メモリ管理を学習</li>
-          <li>拡張性や可読性を意識した設計を重視しています</li>
-        </ul>
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section editorial">
       <div class="section-heading">
         <p class="eyebrow">About</p>
         <h2>自己紹介</h2>
@@ -77,7 +68,7 @@
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <section id="skills" class="section editorial">
       <div class="section-heading">
         <p class="eyebrow">Skills</p>
         <h2>スキル</h2>
@@ -89,7 +80,11 @@
         </article>
         <article class="skill-card">
           <h3>Low-level / Performance</h3>
-          <p>AVX/FMAを使ったSIMD処理、SDF、PMRを使ったメモリ管理、実測値による検証に取り組んでいます。</p>
+          <p>AVX/FMAを使ったSIMD処理、SDF、PMRを使ったメモリ管理に取り組んでいます。順に使うデータを連続配置し、キャッシュの空間的局所性とCPUのハードウェアプリフェッチを活かしやすい設計を学んでいます。</p>
+        </article>
+        <article class="skill-card">
+          <h3>並列プログラミング</h3>
+          <p>スレッドごとに書き込む領域を分け、共有データへの書き込みとロック競合を減らす設計を学んでいます。別々のデータでも同じキャッシュラインに書き込むと起きる、フォルスシェアリングにも注意しています。</p>
         </article>
         <article class="skill-card">
           <h3>Architecture / Design</h3>
@@ -103,10 +98,50 @@
         <p class="eyebrow">Works</p>
         <h2>制作物</h2>
       </div>
-      <div class="work-list">
-        <article class="work-card">
-          <div class="work-number">01</div>
-          <h3>SIMD Expression API Library</h3>
+      <section class="work-group" aria-labelledby="works-in-progress">
+        <h3 class="work-group-title" id="works-in-progress">現在制作中</h3>
+        <article class="work-card featured-work" id="okm-lang" aria-labelledby="okm-title">
+          <h4 id="okm-title">Okm-lang</h4>
+          <p>データ指向設計を前提に、並列処理を普段のコードで扱えるよう言語仕様に組み込む自作プログラミング言語です。ゲームなどのリアルタイム処理で高い性能を引き出せる言語を目指しています。</p>
+          <a class="work-link" href="https://github.com/rice-kome234/Okm-lang" target="_blank" rel="noopener noreferrer">Okm-langのGitHubを見る</a>
+        </article>
+      </section>
+
+      <section class="work-group work-list" aria-labelledby="works-results">
+        <h3 class="work-group-title" id="works-results">成果物</h3>
+        <article class="work-card" id="oop-timizer">
+          <div class="work-info">
+            <h4>OOPtimizer</h4>
+            <p>同じ基底クラスを持つオブジェクトを、具体型ごとの固定長ブロックに連続配置し、処理IDを指定してまとめて実行するC++20ライブラリです。</p>
+            <p>実行計画から型ごとのループを呼びます。<code>Enemy</code> と <code>Bullet</code> の更新では、具体型を指定した呼び出しを使い、要素ごとの仮想呼び出しが消えていることをMSVC x64の生成アセンブリで確認しました。</p>
+            <p>生成した要素は生存中に移動しないため、容量の追加や他の要素の削除をまたいで参照を保持できます。実行中に生成した要素は、次回の実行から処理します。</p>
+            <ul class="tags">
+              <li>C++20</li>
+              <li>データ配置</li>
+              <li>型ごとの実行</li>
+            </ul>
+            <div class="work-actions">
+              <a class="work-link" href="https://github.com/rice-kome234/OOPtimizer" target="_blank" rel="noopener noreferrer">GitHubで見る</a>
+              <a class="work-link" href="#oop-design">設計背景を見る</a>
+            </div>
+          </div>
+          <figure class="code-specimen oop-example">
+            <figcaption>型の登録から一括実行まで</figcaption>
+            <pre tabindex="0"><code>ObjectOptimizer&lt;GameObject&gt; objects;
+
+objects.Register&lt;Enemy&gt;(0, 20);
+objects.Register&lt;Bullet&gt;(0, 10);
+objects.Create&lt;Enemy&gt;(0, 3);
+objects.Create&lt;Bullet&gt;(1);
+objects.Execute(GameOperation::Update);</code></pre>
+            <p><code>Register()</code> の第2引数は実行優先度です。数字が小さい型から実行するため、この例では <code>Bullet</code> が先に更新されます。<code>Execute()</code> の引数で実行する処理を指定します。</p>
+            <a href="#oop-benchmark">OOPtimizerの測定結果を見る</a>
+          </figure>
+        </article>
+
+        <article class="work-card" id="simd-library">
+          <div class="work-info">
+          <h4>SIMD Expression API Library</h4>
           <p>
             複数のfloat配列に対する要素ごとの計算を、<code>x = a * b + c</code> のような式として書けるC++ライブラリです。
             公開APIは <code>simd.h</code> にまとめ、実装は <code>simd.cpp</code> と内部ヘッダーへ分離しています。
@@ -121,12 +156,25 @@
             <li>SoA</li>
             <li>Expression API</li>
           </ul>
-          <a class="work-link" href="https://github.com/rice-kome234/SIMD-library" target="_blank" rel="noopener noreferrer">GitHubで見る</a>
+          <div class="work-actions">
+            <a class="work-link" href="https://github.com/rice-kome234/SIMD-library" target="_blank" rel="noopener noreferrer">GitHubで見る</a>
+            <a class="work-link" href="#simd-design">設計背景を見る</a>
+          </div>
+          </div>
+          <figure class="code-specimen">
+            <figcaption>複数の代入をまとめて評価</figcaption>
+            <pre><code>x = a * b + c;
+y = a * b + d;
+z = a * b + e;
+
+engine.execute();</code></pre>
+            <a href="#simd-benchmark">SIMDの測定結果を見る</a>
+          </figure>
         </article>
 
         <article class="work-card">
-          <div class="work-number">02</div>
-          <h3>Archetype ECS Module Library</h3>
+          <div class="work-info">
+          <h4>Archetype ECS Module Library</h4>
           <p>
             3年生で制作した、C++20 module形式のArchetype ECSです。
             Entity、Component、Archetypeを分け、指定したコンポーネントを持つEntityへ
@@ -136,10 +184,6 @@
             コンポーネント構成は <code>std::bitset</code> のシグネチャで管理し、
             型の組み合わせをビット列として見られるようにすることで、Archetypeの一致判定を理解しやすくしました。
           </p>
-          <figure class="work-media">
-            <img src="images/ecs.png" alt="Archetype ECSのコードスクリーンショット">
-            <figcaption>Archetype ECSの公開APIとDoxygenコメント</figcaption>
-          </figure>
           <ul class="tags">
             <li>C++</li>
             <li>C++20 Module</li>
@@ -147,10 +191,17 @@
             <li>Archetype</li>
             <li>Bitset</li>
           </ul>
+          </div>
+          <figure class="work-media">
+            <a class="media-link" href="images/ecs.png">
+              <img src="images/ecs.png" alt="Archetype ECSのコードスクリーンショット" width="718" height="399" loading="lazy">
+            </a>
+            <figcaption>Archetype ECSの公開APIとDoxygenコメント</figcaption>
+          </figure>
         </article>
-        <article class="work-card">
-          <div class="work-number">03</div>
-          <h3>DX11 Rendering Framework</h3>
+        <article class="work-card has-media" id="dx11-framework">
+          <div class="work-info">
+          <h4>DX11 Rendering Framework</h4>
           <p>
             2年生で制作した、Siv3Dのように扱いやすいAPIを目指したDirectX 11ベースの描画フレームワークです。
             <code>CONTEXT_API</code> からテクスチャ追加やスプライト描画を呼び出せるようにしました。
@@ -159,30 +210,43 @@
             描画ごとに重いDrawCallを発行するのではなく、スプライト情報を一度ためて、
             最後に <code>DrawInstanced</code> でまとめて描画する設計に挑戦しています。
           </p>
-          <div class="work-gallery">
-            <figure class="work-media">
-              <img src="images/dx11-api-setup.png" alt="CONTEXT_APIでテクスチャとスプライトを設定する使用例">
-              <figcaption><code>CONTEXT_API</code> からテクスチャ登録とスプライト設定を行う使用例</figcaption>
-            </figure>
-            <figure class="work-media">
-              <img src="images/dx11-api-draw.png" alt="CONTEXT_APIでスプライト描画を追加する使用例">
-              <figcaption>使う側は <code>AddSprite</code> で描画対象を追加するだけにしています</figcaption>
-            </figure>
-            <figure class="work-media">
-              <img src="images/dx11.png" alt="DX11 Rendering Frameworkの内部APIコードスクリーンショット">
-              <figcaption>描画処理をまとめて扱うための内部API層</figcaption>
-            </figure>
-          </div>
           <ul class="tags">
             <li>C++</li>
             <li>DirectX 11</li>
             <li>Framework</li>
             <li>DrawInstanced</li>
           </ul>
+          </div>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <a class="media-link" href="images/dx11_game.png">
+                <img src="images/dx11-game-preview.jpg" alt="敵やパーティクルを描画しているゲームの戦闘画面" width="1280" height="720" loading="lazy">
+              </a>
+              <figcaption>DX11 Rendering Frameworkを使って制作したゲームの実行画面</figcaption>
+            </figure>
+            <figure class="work-media">
+              <a class="media-link" href="images/dx11.png">
+                <img src="images/dx11.png" alt="DX11 Rendering Frameworkの内部APIコードスクリーンショット" width="1016" height="449" loading="lazy">
+              </a>
+              <figcaption>描画処理をまとめて扱うための内部API層</figcaption>
+            </figure>
+            <figure class="work-media">
+              <a class="media-link" href="images/dx11-api-setup.png">
+                <img src="images/dx11-api-setup.png" alt="CONTEXT_APIでテクスチャとスプライトを設定する使用例" width="683" height="207" loading="lazy">
+              </a>
+              <figcaption><code>CONTEXT_API</code> からテクスチャ登録とスプライト設定を行う使用例</figcaption>
+            </figure>
+            <figure class="work-media">
+              <a class="media-link" href="images/dx11-api-draw.png">
+                <img src="images/dx11-api-draw.png" alt="CONTEXT_APIでスプライト描画を追加する使用例" width="447" height="132" loading="lazy">
+              </a>
+              <figcaption>使う側は <code>AddSprite</code> で描画対象を追加するだけにしています</figcaption>
+            </figure>
+          </div>
         </article>
         <article class="work-card">
-          <div class="work-number">04</div>
-          <h3>C++20 Memory Module Library</h3>
+          <div class="work-info">
+          <h4>C++20 Memory Module Library</h4>
           <p>
             2年生で制作した、C++20 module形式のメモリ管理ライブラリです。
             <code>import memory;</code> で使える公開インターフェースを意識して、
@@ -192,20 +256,23 @@
             <code>std::pmr::memory_resource</code> と組み合わせ、事前に確保したメモリ領域を使うことで、
             生成コストを抑える設計に挑戦しています。コメントはDoxygen形式で整理しました。
           </p>
-          <figure class="work-media">
-            <img src="images/memory.png" alt="C++20 Memory Module Libraryのコードスクリーンショット">
-            <figcaption>C++20 moduleとして公開するメモリ管理インターフェース</figcaption>
-          </figure>
           <ul class="tags">
             <li>C++20</li>
             <li>Module</li>
             <li>PMR</li>
             <li>Doxygen</li>
           </ul>
+          </div>
+          <figure class="work-media">
+            <a class="media-link" href="images/memory.png">
+              <img src="images/memory.png" alt="C++20 Memory Module Libraryのコードスクリーンショット" width="664" height="635" loading="lazy">
+            </a>
+            <figcaption>C++20 moduleとして公開するメモリ管理インターフェース</figcaption>
+          </figure>
         </article>
-        <article class="work-card">
-          <div class="work-number">05</div>
-          <h3>SDF Collision Console Demo</h3>
+        <article class="work-card has-media">
+          <div class="work-info">
+          <h4>SDF Collision Console Demo</h4>
           <p>
             1年生のときに制作した、SDF（Signed Distance Field）を使ったコンソール上の衝突判定デモです。
             点や線分、四角形に対する距離を計算し、距離の符号によって内側・外側を判定する仕組みに挑戦しました。
@@ -214,26 +281,31 @@
             プレイヤー位置とSDFの値を画面に表示し、四角形の内側に入ったときは色を変えることで、
             数式で求めた距離が当たり判定に使えることを確認できるようにしています。
           </p>
-          <div class="work-gallery">
-            <figure class="work-media">
-              <img src="images/sdf-ground-hit.png" alt="SDFの値と地面判定を表示するコンソールデモ画面">
-              <figcaption>SDF値と地面との当たり判定を表示する実行画面</figcaption>
-            </figure>
-            <figure class="work-media">
-              <img src="images/sdf-quad-check.png" alt="SDFの符号で四角形の内外を判定するコンソールデモ画面">
-              <figcaption>SDFの符号に応じて表示色を変え、内外判定を確認しています</figcaption>
-            </figure>
-          </div>
           <ul class="tags">
             <li>C++</li>
             <li>SDF</li>
             <li>Collision</li>
             <li>Console</li>
           </ul>
+          </div>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <a class="media-link" href="images/sdf-ground-hit.png">
+                <img src="images/sdf-ground-hit.png" alt="SDFの値と地面判定を表示するコンソールデモ画面" width="1344" height="785" loading="lazy">
+              </a>
+              <figcaption>SDF値と地面との当たり判定を表示する実行画面</figcaption>
+            </figure>
+            <figure class="work-media">
+              <a class="media-link" href="images/sdf-quad-check.png">
+                <img src="images/sdf-quad-check.png" alt="SDFの符号で四角形の内外を判定するコンソールデモ画面" width="1338" height="786" loading="lazy">
+              </a>
+              <figcaption>SDFの符号に応じて表示色を変え、内外判定を確認しています</figcaption>
+            </figure>
+          </div>
         </article>
-        <article class="work-card">
-          <div class="work-number">06</div>
-          <h3>Console Game / Double Buffer Library</h3>
+        <article class="work-card has-media">
+          <div class="work-info">
+          <h4>Console Game / Double Buffer Library</h4>
           <p>
             1年生のときに制作したC++コンソールゲームです。
             純粋仮想関数を持つ基底クラスを作り、各処理を共通のインターフェースから呼び出す構成に挑戦しました。
@@ -243,30 +315,83 @@
             ダブルバッファ機能を <code>doublebuffer.h</code> としてまとめました。
             1年生時点の作品のためマジックナンバーが多く残っていますが、現在は定数化や責務分離を意識して改善しています。
           </p>
-          <div class="work-gallery">
-            <figure class="work-media">
-              <img src="images/dbuffer-game.png" alt="コンソールゲームの実行画面">
-              <figcaption>自作ダブルバッファAPIで描画したゲーム画面</figcaption>
-            </figure>
-            <figure class="work-media">
-              <img src="images/dbuffer-code.png" alt="ダブルバッファAPIを使った描画コード">
-              <figcaption><code>DBuffer::input</code> を使った描画処理</figcaption>
-            </figure>
-          </div>
           <ul class="tags">
             <li>C++</li>
             <li>OOP</li>
             <li>Pure Virtual</li>
             <li>Double Buffer</li>
           </ul>
+          </div>
+          <div class="work-gallery">
+            <figure class="work-media">
+              <a class="media-link" href="images/dbuffer-game.png">
+                <img src="images/dbuffer-game.png" alt="コンソールゲームの実行画面" width="1433" height="773" loading="lazy">
+              </a>
+              <figcaption>自作ダブルバッファAPIで描画したゲーム画面</figcaption>
+            </figure>
+            <figure class="work-media">
+              <a class="media-link" href="images/dbuffer-code.png">
+                <img src="images/dbuffer-code.png" alt="ダブルバッファAPIを使った描画コード" width="472" height="469" loading="lazy">
+              </a>
+              <figcaption><code>DBuffer::input</code> を使った描画処理</figcaption>
+            </figure>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <section id="oop-design" class="section benchmark" aria-labelledby="oop-design-title">
+      <div class="section-heading">
+        <p class="eyebrow">Design Story</p>
+        <h2 id="oop-design-title">OOPtimizerの設計背景</h2>
+      </div>
+      <p class="benchmark-lead">ゲームで多数の派生オブジェクトを毎フレーム更新する場面を想定しました。共通の基底クラスで処理を定義できるようにしながら、格納方法と更新ループを見直しました。</p>
+      <div class="benchmark-grid">
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>ブロック単位の連続配置</h3>
+          </div>
+          <p>同じ具体型を固定長ブロック内で連続配置し、順に走査することで、空間的局所性とハードウェアプリフェッチを活かしやすくします。容量が足りなければブロックを追加し、削除で空いた場所は次の生成に使います。実行中に生成した要素も移動させず、実行後に次回の処理対象へ加えます。</p>
+          <p class="benchmark-note">参照とポインタは、対象の削除が反映されるか、管理するOOPtimizerが破棄されるまで有効です。</p>
+        </article>
+        <article class="benchmark-card">
+          <div class="benchmark-head">
+            <h3>仮想呼び出しの見直し</h3>
+          </div>
+          <p>当初は型別のループでも基底型の仮想メンバ関数ポインタを使っていたため、生成アセンブリに要素ごとの仮想呼び出しが残っていました。登録したラムダから <code>object.T::Update()</code> と具体型を指定して呼ぶ形へ変更し、<code>Enemy</code> と <code>Bullet</code> の更新処理がループに展開されることを確認しました。</p>
+          <p class="benchmark-note">実行計画では、処理IDごとに型別のループを登録し、優先度順に呼び出します。</p>
         </article>
       </div>
     </section>
 
-    <section class="section benchmark">
+    <section id="oop-benchmark" class="section benchmark" aria-labelledby="oop-benchmark-title">
+      <div class="section-heading">
+        <p class="eyebrow">Benchmark</p>
+        <h2 id="oop-benchmark-title">OOPtimizerのベンチマーク</h2>
+      </div>
+      <p class="benchmark-lead">EnemyとBulletを各4,000個、合計8,000個用意し、全件の更新を20,000回ずつ実行しました。Intel Core i7-13650HX、MSVC 19.52 x64（<code>/O2</code>、LTCG）で5回測定した中央値です。</p>
+      <div class="benchmark-result">
+        <table class="benchmark-table" aria-labelledby="oop-benchmark-title">
+          <thead>
+            <tr>
+              <th scope="col">実装</th>
+              <th scope="col">時間</th>
+              <th scope="col">仮想ループ比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>個別確保・仮想関数ループ</td><td>164.838 ms</td><td>1.00倍</td></tr>
+            <tr><td>OOPtimizerの型別実行</td><td>60.459 ms</td><td>2.73倍</td></tr>
+          </tbody>
+        </table>
+        <p class="benchmark-note">生成とチェックサムは計測外。チェックサムは全5回で一致しました。比較にはデータ配置と呼び出し方法の両方の差が含まれます。</p>
+      </div>
+    </section>
+
+    <section id="simd-design" class="section benchmark" aria-labelledby="simd-design-title">
       <div class="section-heading">
         <p class="eyebrow">Design Story</p>
-        <h2>SIMDライブラリの設計背景</h2>
+        <h2 id="simd-design-title">SIMDライブラリの設計背景</h2>
       </div>
       <p class="benchmark-lead">
         DirectXMathを使う中で、数値を毎回変換して関数へ渡す手間や、<code>__m256</code> でVector3を扱うと余ったレーンが無駄になる点が気になったことから開発を始めました。
@@ -296,7 +421,7 @@
       </div>
     </section>
 
-    <section class="section benchmark">
+    <section id="simd-benchmark" class="section benchmark">
       <div class="section-heading">
         <p class="eyebrow">Benchmark</p>
         <h2>SIMDライブラリのベンチマーク比較</h2>
@@ -481,7 +606,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section editorial">
       <div class="section-heading">
         <p class="eyebrow">Strength</p>
         <h2>大切にしていること</h2>
@@ -502,23 +627,24 @@
       </div>
     </section>
 
-    <section id="contact" class="section contact">
+    <section id="contact" class="section contact editorial">
       <div class="section-heading">
         <p class="eyebrow">Contact</p>
         <h2>連絡先</h2>
       </div>
-      <p>
-        制作物やコードについてご質問がありましたら、メールまたはGitHubからご連絡ください。
-      </p>
-      <div class="contact-links">
-        <a href="mailto:yonetani.shinnosuke@gmail.com">yonetani.shinnosuke@gmail.com</a>
-        <a href="https://github.com/rice-kome234">GitHub</a>
+      <div>
+        <p>制作物やコードについてのご連絡は、メールまたはGitHubへ。</p>
+        <div class="contact-links">
+          <a href="mailto:yonetani.shinnosuke@gmail.com">yonetani.shinnosuke@gmail.com</a>
+          <a href="https://github.com/rice-kome234">GitHub</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2026 米谷 慎之助。</p>
+    <p>&copy; 2026 米谷 慎之助</p>
+    <a href="#top">ページの先頭へ</a>
   </footer>
 </body>
 </html>
